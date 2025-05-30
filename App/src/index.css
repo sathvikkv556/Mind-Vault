@@ -1,0 +1,18 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Light theme defaults */
+  --bg-primary: #ffffff;
+  --text-primary: #000000;
+  --button-bg: #f0f0f0;
+  --button-text: #333333;
+}
+
+[data-theme="dark"] {
+  --bg-primary: #121212;
+  --text-primary: #ffffff;
+  --button-bg: #333333;
+  --button-text: #f0f0f0;
+}
