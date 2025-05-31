@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
+import axios from 'axios';
 import AppLogo from "../components/icons/AppLogo";
 
 const RegisterPage = () => {
@@ -21,22 +22,19 @@ const RegisterPage = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/v1/signup", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ username, email, password }),
-      });
-
-      if (res.ok) {
-        toast.success("Account Created Successfully!");
-        setShowSignup(false);
-        form.reset();
-      } else {
-        toast.error("Account already exists");
-      }
-    } catch (err) {
+      const res = await axios.post("http://localhost:5000/api/v1/signup", {
+        username,
+        email,
+        password,
+      }, { withCredentials: true });
+          if(res.data.success)
+          {    toast.success("Account Created Successfully!");
+      setShowSignup(false);
+      form.reset();}
+  
+    } catch (err: any) {
       console.error("Signup Error:", err);
+      toast.error("Account already exists");
     }
   }
 
@@ -52,28 +50,24 @@ const RegisterPage = () => {
     }
 
     try {
-      const res = await fetch("http://localhost:5000/api/v1/signin", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        credentials: "include",
-        body: JSON.stringify({ email, password }),
-      });
+      const res = await axios.post("http://localhost:5000/api/v1/signin", {
+        email,
+        password,
+      }, { withCredentials: true });
 
-      const backendData = await res.json();
-
-      if (res.ok) {
-        localStorage.setItem("token", backendData.token);
-        localStorage.setItem("userId", backendData.userID);
-        toast.success("Logged in Successfully!");
-        setShowLogin(false);
-        navigate("/HomePage");
-      } else {
-        toast.error("Login failed. Please check your credentials.");
-      }
-    } catch (err) {
+      const backendData = res.data;
+      localStorage.setItem("token", backendData.token);
+      localStorage.setItem("userId", backendData.userID);
+      toast.success("Logged in Successfully!");
+      setShowLogin(false);
+      navigate("/HomePage");
+    } catch (err: any) {
       console.error("Login Error:", err);
+      toast.error("Login failed. Please check your credentials.");
     }
   }
+
+  // ... (rest of the component remains unchanged)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 text-gray-800">

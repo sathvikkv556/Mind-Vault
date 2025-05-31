@@ -29,12 +29,13 @@ const SharedPage = () => {
   return (
     <div className="bg-slate-200 w-full min-h-screen">
       <div className="flex justify-between">
-        <div className="font-bold text-3xl mt-4 ml-8">Shared Content By Second Brain...</div>
+        <div className="font-bold text-3xl mt-4 ml-8">Shared Content By User...</div>
       </div>
       <div className="ml-7 mt-6 flex flex-wrap gap-x-3 gap-y-5">
         {sharedData.length > 0 ? (
           sharedData.map((item: any, idx: number) => (
             <Card
+            createdAt={item.createdAt} 
               key={idx}
               icon={item.contentType}
               tag={item.tag}

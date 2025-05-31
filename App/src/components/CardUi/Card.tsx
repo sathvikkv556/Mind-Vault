@@ -281,12 +281,13 @@ import Tags from "./Tags";
 import { format } from 'date-fns';
 import { JSX, useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
-
+import{toast} from 'react-hot-toast';
 interface CardProps {
   icon: "Youtube" | "Twitter" | "Notion";
   tag: "Productivity" | "Tech & Tools" | "Mindset" | "Learning & Skills" | "Workflows" | "Inspiration";
   title: string;
   link: string;
+  createdAt:string;
   reload?: () => void;
 }
 
@@ -298,7 +299,8 @@ declare global {
 
 const Card = (props: CardProps) => {
   const navigate = useNavigate();
-  const date = format(new Date(), 'dd MMM yyyy');
+ const date = format(new Date(props.createdAt), 'dd MMM yyyy'); // ✅ Correct
+
   const [youtubeId, setYoutubeId] = useState<string | null>(null);
   const twitterRef = useRef<HTMLDivElement | null>(null);
 
@@ -331,7 +333,7 @@ const Card = (props: CardProps) => {
     try {
       const token = localStorage.getItem("token");
       if (!token) {
-        alert("Please log in first");
+        toast.error("Please log in first");
         navigate("/");
         return;
       }
@@ -343,7 +345,7 @@ const Card = (props: CardProps) => {
       });
 
       if (res.ok) {
-        alert("Item deleted");
+        toast.success("Item deleted");
         props.reload && props.reload();
       }
     } catch (err) {

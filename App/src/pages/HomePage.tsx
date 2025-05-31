@@ -156,7 +156,7 @@ import ButtonUi from "../components/ButtonUi/Button";
 import SideNavbar from "../components/SideNavbarUi/SideNavbar";
 import ShareIcon from "../components/icons/ShareIcon";
 import PlusIcon from "../components/icons/PlusIcon";
-import { useEffect, useState } from "react";
+import { JSX, useEffect, useState } from "react";
 import Modal from "../components/ModalUi/Modal";
 import Card from "../components/CardUi/Card";
 import { useNavigate } from "react-router-dom";
@@ -221,28 +221,28 @@ const HomePage = () => {
     show = loading ? (
       <div className="text-2xl font-semibold dark:text-gray-200">Loading...</div>
     ) : ( data1.length > 0 ? data1.map((item: any, idx: number) => {
-      return <Card key={idx} icon={item.contentType} tag={item.tag} title={item.title} link={item.link} reload={() => setReloadData(!reloadData)}/>
+      return <Card createdAt={item.createdAt} key={idx} icon={item.contentType} tag={item.tag} title={item.title} link={item.link} reload={() => setReloadData(!reloadData)}/>
     }) : <div className="text-2xl font-semibold dark:text-gray-200">You do not have any Content</div>
     )
   } else if (dataShow === "Youtube") {
     show = loading ? (
       <div className="text-2xl font-semibold dark:text-gray-200">Loading...</div>
     ) : ( ytData.length > 0 ? ytData.map((item: any, idx: number) => {
-      return <Card key={idx} icon={item.contentType} tag={item.tag} title={item.title} link={item.link} reload={() => setReloadData(!reloadData)}/>
+      return <Card createdAt={item.createdAt} key={idx} icon={item.contentType} tag={item.tag} title={item.title} link={item.link} reload={() => setReloadData(!reloadData)}/>
     }) : <div className="text-2xl font-semibold dark:text-gray-200">You do not have any Content</div>
     )
   } else if (dataShow === "Twitter") {
     show = loading ? (
       <div className="text-2xl font-semibold dark:text-gray-200">Loading...</div>
     ) : ( ytData.length > 0 ? ytData.map((item: any, idx: number) => {
-      return <Card key={idx} icon={item.contentType} tag={item.tag} title={item.title} link={item.link} reload={() => setReloadData(!reloadData)}/>
+      return <Card createdAt={item.createdAt} key={idx} icon={item.contentType} tag={item.tag} title={item.title} link={item.link} reload={() => setReloadData(!reloadData)}/>
     }) : <div className="text-2xl font-semibold dark:text-gray-200">You do not have any Content</div>
     )
   } else {
     show = loading ? (
       <div className="text-2xl font-semibold dark:text-gray-200">Loading...</div>
     ) : ( notionData.length > 0 ? notionData.map((item: any, idx: number) => {
-      return <Card key={idx} icon={item.contentType} tag={item.tag} title={item.title} link={item.link} reload={() => setReloadData(!reloadData)}/>
+      return <Card createdAt={item.createdAt} key={idx} icon={item.contentType} tag={item.tag} title={item.title} link={item.link} reload={() => setReloadData(!reloadData)}/>
     }) : <div className="text-2xl font-semibold dark:text-gray-200">You do not have any Content</div>
     )
   }

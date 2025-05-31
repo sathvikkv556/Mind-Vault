@@ -5,7 +5,8 @@ const contentSchema = new mongoose.Schema({
   contentType: {type: String, require: true},
   title: {type: String, require: true},
   tag: {type: String, require: true},
-  userId: {type: Types.ObjectId, ref: 'User', require: true}
+  userId: {type: Types.ObjectId, ref: 'User', require: true},
+  createdAt:{type:Date,default:Date.now()},
 })
 
 const userContent = mongoose.model("content",contentSchema);

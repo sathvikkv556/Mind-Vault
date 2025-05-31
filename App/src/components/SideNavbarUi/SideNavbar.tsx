@@ -6,6 +6,8 @@ import All from "../icons/All";
 import TwitterIcon from "../icons/TwitterIcon";
 import { useTheme } from "../../context/ThemeContext";
 
+import { toast,Toaster } from "react-hot-toast";
+
 interface SideNavbarProps {
   data1: any;
   setData: any;
@@ -46,6 +48,7 @@ const SideNavbar = ({
   const handleLogout = () => {
   localStorage.removeItem("token");
   navigate("/", { state: { loggedOut: true } });
+  toast.success("logged out successfully")
 };
 
 
