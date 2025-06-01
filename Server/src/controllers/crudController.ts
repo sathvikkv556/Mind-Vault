@@ -47,7 +47,7 @@ export const content = async(req: AuthRequest, res: Response)=>{
       message: "User data fetched successfully",
       data: userData,
     });
-    console.log(userData)
+    // console.log(userData)
   }catch(err){
     console.log("Err(catch): something went wrong",err)
     return;
@@ -59,8 +59,8 @@ export const deleteContent = async(req: AuthRequest, res: Response)=>{
     const userid = req.userID;
     const userTitle = req.params.contentId;
     
-    console.log("userid =>", userid)
-    console.log("contentid =>", userTitle)
+    // console.log("userid =>", userid)
+    // console.log("contentid =>", userTitle)
 
     if (!userid || !userTitle) {
        res.status(400).json({ message: "User ID or Content ID missing" });

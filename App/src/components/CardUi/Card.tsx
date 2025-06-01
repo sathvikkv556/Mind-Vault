@@ -435,7 +435,7 @@ const Card = (props: CardProps) => {
     <div className="flex justify-between items-center px-4 py-3 border-b border-gray-200">
       <div className="flex items-center gap-3 overflow-hidden w-full">
         <DocumentIcon />
-        <span className="font-semibold text-zinc-600 text-md text-gray-800 truncate w-0 flex-1">
+        <span className="font-semibold text-zinc-600 text-md truncate w-0 flex-1">
           {props.title}
         </span>
       </div>

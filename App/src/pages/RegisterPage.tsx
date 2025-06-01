@@ -58,7 +58,7 @@ const RegisterPage = () => {
       const backendData = res.data;
       localStorage.setItem("token", backendData.token);
       localStorage.setItem("userId", backendData.userID);
-      toast.success("Logged in Successfully!");
+      toast.success(backendData.message);
       setShowLogin(false);
       navigate("/HomePage");
     } catch (err: any) {
@@ -67,7 +67,6 @@ const RegisterPage = () => {
     }
   }
 
-  // ... (rest of the component remains unchanged)
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 to-indigo-100 text-gray-800">

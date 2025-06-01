@@ -9,35 +9,35 @@ import { useTheme } from "../../context/ThemeContext";
 import { toast,Toaster } from "react-hot-toast";
 
 interface SideNavbarProps {
-  data1: any;
+  Data: any;
   setData: any;
   setYTData: any;
-  setNitionData: any;
+  setNotionData: any;
   setDataShow: any;
 }
 
 const SideNavbar = ({
-  data1,
+  Data,
   setData,
   setYTData,
-  setNitionData,
+  setNotionData,
   setDataShow,
 }: SideNavbarProps) => {
   const { isDarkMode } = useTheme();
   const navigate = useNavigate();
 
   const filterYoutube = () => {
-    const ytData = data1.filter((item: any) => item.contentType === "Youtube");
+    const ytData = Data.filter((item: any) => item.contentType === "Youtube");
     setYTData(ytData);
     setDataShow("Youtube");
   };
 
   const filterDocuments = () => {
-    const ntData = data1.filter(
+    const ntData = Data.filter(
       (item: any) =>
         item.contentType === "Notion" 
     );
-    setNitionData(ntData);
+    setNotionData(ntData);
     setDataShow("Notion");
   };
 
