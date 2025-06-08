@@ -282,6 +282,7 @@ import { format } from 'date-fns';
 import { JSX, useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import{toast} from 'react-hot-toast';
+  import axios from "axios";
 interface CardProps {
   icon: "Youtube" | "Twitter" | "Notion";
   tag: "Productivity" | "Tech & Tools" | "Mindset" | "Learning & Skills" | "Workflows" | "Inspiration";
@@ -329,29 +330,33 @@ const Card = (props: CardProps) => {
     }
   }, [props.link, props.icon]);
 
-  async function deleteHandle() {
-    try {
-      const token = localStorage.getItem("token");
-      if (!token) {
-        toast.error("Please log in first");
-        navigate("/");
-        return;
-      }
 
-      const res = await fetch(`http://localhost:5000/api/v1/delete/${props.title}`, {
-        method: "DELETE",
-        headers: { token },
-        credentials: "include"
-      });
 
-      if (res.ok) {
-        toast.success("Item deleted");
-        props.reload && props.reload();
-      }
-    } catch (err) {
-      console.log("Item not deleted");
+async function deleteHandle() {
+  try {
+    const token = localStorage.getItem("token");
+    if (!token) {
+      toast.error("Please log in first");
+      navigate("/");
+      return;
     }
+
+    const res = await axios.delete(`http://localhost:5000/api/v1/delete/${props.title}`, {
+      headers: {
+        token: token
+      },
+      withCredentials: true
+    });
+
+    if (res.status === 200) {
+      toast.success("Item deleted");
+      props.reload && props.reload();
+    }
+  } catch (err) {
+    console.log("Item not deleted", err);
   }
+}
+
 
   const renderContentPreview = (): JSX.Element => {
     if (props.icon === "Youtube" && youtubeId) {

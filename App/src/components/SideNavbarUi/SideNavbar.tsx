@@ -1,3 +1,4 @@
+// Updated SideNavbar.tsx
 import { useNavigate } from "react-router-dom";
 import AppLogo from "../icons/AppLogo";
 import YoutubeIcon from "../icons/YoutubeIcon";
@@ -5,14 +6,14 @@ import DocumentIcon from "../icons/DocumentIcon";
 import All from "../icons/All";
 import TwitterIcon from "../icons/TwitterIcon";
 import { useTheme } from "../../context/ThemeContext";
-
-import { toast,Toaster } from "react-hot-toast";
+import { toast } from "react-hot-toast";
 
 interface SideNavbarProps {
   Data: any;
   setData: any;
   setYTData: any;
   setNotionData: any;
+  setTwitterData: any;
   setDataShow: any;
 }
 
@@ -21,6 +22,7 @@ const SideNavbar = ({
   setData,
   setYTData,
   setNotionData,
+  setTwitterData,
   setDataShow,
 }: SideNavbarProps) => {
   const { isDarkMode } = useTheme();
@@ -33,12 +35,15 @@ const SideNavbar = ({
   };
 
   const filterDocuments = () => {
-    const ntData = Data.filter(
-      (item: any) =>
-        item.contentType === "Notion" 
-    );
+    const ntData = Data.filter((item: any) => item.contentType === "Notion");
     setNotionData(ntData);
     setDataShow("Notion");
+  };
+
+  const filterTwitter = () => {
+    const twData = Data.filter((item: any) => item.contentType === "Twitter");
+    setTwitterData(twData);
+    setDataShow("Twitter");
   };
 
   const showAll = () => {
@@ -46,11 +51,10 @@ const SideNavbar = ({
   };
 
   const handleLogout = () => {
-  localStorage.removeItem("token");
-  navigate("/", { state: { loggedOut: true } });
-  toast.success("logged out successfully")
-};
-
+    localStorage.removeItem("token");
+    navigate("/", { state: { loggedOut: true } });
+    toast.success("logged out successfully");
+  };
 
   return (
     <div
@@ -58,54 +62,37 @@ const SideNavbar = ({
         isDarkMode ? "bg-gray-800  border-gray-700" : "bg-zinc-100 border-gray-200"
       } border-r`}
     >
-      {/* Logo Section */}
       <div
         className={`flex items-center gap-3 p-6 border-b ${
           isDarkMode ? "border-gray-700" : "border-gray-200"
         }`}
       >
-        <AppLogo
-         
-        />
+        <AppLogo />
         <span
           className={`text-2xl font-bold ${
             isDarkMode ? "text-white" : "text-blue-600"
           }`}
         >
-         MindVault
+          MindVault
         </span>
       </div>
 
-      {/* Navigation Section */}
       <div className="flex-1 p-4 space-y-1 overflow-y-auto">
         <NavItem icon={<All />} label="All" onClick={showAll} />
         <NavItem icon={<YoutubeIcon />} label="YouTube" onClick={filterYoutube} />
         <NavItem icon={<DocumentIcon />} label="Documents" onClick={filterDocuments} />
-       
+        <NavItem icon={<TwitterIcon />} label="Twitter" onClick={filterTwitter} />
       </div>
 
-      {/* Bottom Section */}
       <div
         className={`p-4 border-t space-y-2 ${
           isDarkMode ? "border-gray-700" : "border-gray-200"
         }`}
       >
-        <div
-          className={`text-xs ${
-            isDarkMode ? "text-gray-500" : "text-gray-400"
-          }`}
-        >
-          v1.0.0
-        </div>
-        <div
-          className={`text-sm ${
-            isDarkMode ? "text-gray-400" : "text-gray-500"
-          }`}
-        >
+        <div className={`text-xs ${isDarkMode ? "text-gray-500" : "text-gray-400"}`}>v1.0.0</div>
+        <div className={`text-sm ${isDarkMode ? "text-gray-400" : "text-gray-500"}`}>
           Your digital knowledge hub
         </div>
-
-        {/* Logout Button */}
         <button
           onClick={handleLogout}
           className={`w-full mt-2 py-2 px-4 rounded-lg text-sm font-semibold transition-colors ${
