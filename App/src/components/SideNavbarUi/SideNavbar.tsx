@@ -19,7 +19,7 @@ interface SideNavbarProps {
 
 const SideNavbar = ({
   Data,
-  setData,
+  
   setYTData,
   setNotionData,
   setTwitterData,

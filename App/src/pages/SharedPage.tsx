@@ -1,9 +1,9 @@
-import { useLocation, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Card from "../components/CardUi/Card";
 import { useEffect, useState } from "react";
 
 const SharedPage = () => {
-  const { id } = useParams();
+  
   const location = useLocation();
   const [sharedData, setSharedData] = useState<any[]>([]);
 
