@@ -20,7 +20,9 @@ app.use(cookieParser());
 dbConnect();
 
 app.use("/api/v1",router);
-
+app.get('/', (req, res) => {
+  res.send('Backend is working!');
+});
 if(process.env.NODE_ENV!="production"){
   app.listen(process.env.PORT,()=>{
   console.log("Server is runing on port"+process.env.PORT)
