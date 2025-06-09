@@ -12,7 +12,7 @@ dotenv.config();
 app.use(   
   cors(
     {
-    origin: "https://mind-vault-r5mk-git-main-sathvikkv456s-projects.vercel.app/", 
+    origin: "https://mind-vault-r5mk-git-main-sathvikkv456s-projects.vercel.app", 
     credentials: true 
 }            
 ));
