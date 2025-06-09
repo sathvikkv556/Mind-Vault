@@ -12,7 +12,7 @@ dotenv.config();
 app.use(   
   cors(
     {
-    origin: "http://localhost:5173", 
+    origin: "https://mind-vault-r5mk-git-main-sathvikkv456s-projects.vercel.app/", 
     credentials: true 
 }            
 ));
@@ -20,6 +20,7 @@ app.use(cookieParser());
 dbConnect();
 
 app.use("/api/v1",router);
+
 
 app.listen(process.env.PORT,()=>{
   console.log("Server is runing on port"+process.env.PORT)
