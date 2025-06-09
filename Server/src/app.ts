@@ -9,13 +9,18 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({ extended: true}))
 dotenv.config();
-app.use(   
-  cors(
-    {
-    origin: "https://mind-vault-r5mk-git-main-sathvikkv456s-projects.vercel.app", 
-    credentials: true 
-}            
-));
+app.use(cors({
+  origin: 'https://mind-vault-r5mk.vercel.app',
+  credentials: true
+}));
+
+app.use(express.json());
+
+// Optional: Handle preflight OPTIONS manually
+app.options('*', cors({
+  origin: 'https://mind-vault-r5mk.vercel.app',
+  credentials: true
+}));
 app.use(cookieParser());
 dbConnect();
 
