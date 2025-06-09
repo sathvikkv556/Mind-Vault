@@ -39,8 +39,9 @@ const Modal = ({ onClick, setModal, setReloadData, darkMode = false }: ModalProp
         navigate("/");
         return;
       }
+      const backendUrl = import.meta.env.VITE_BACKEND_URL;
 
-      const response = await fetch("http://localhost:5000/api/v1/addcontent", {
+      const response = await fetch(`${backendUrl}/api/v1/addcontent`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

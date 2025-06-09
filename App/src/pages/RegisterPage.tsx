@@ -22,7 +22,8 @@ const RegisterPage = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/v1/signup", {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL;
+      const res = await axios.post(`${backendUrl}/api/v1/signup`, {
         username,
         email,
         password,
@@ -50,7 +51,8 @@ const RegisterPage = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:5000/api/v1/signin", {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL;
+      const res = await axios.post(`${backendUrl}/api/v1/signin`, {
         email,
         password,
       }, { withCredentials: true });

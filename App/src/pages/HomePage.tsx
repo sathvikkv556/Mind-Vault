@@ -24,7 +24,7 @@ const HomePage = () => {
   const [shareData, setShareData] = useState<any[]>([]);
   const [dataShow, setDataShow] = useState("All");
   const [twitterData, setTwitterData] = useState<any[]>([]);
-
+  
   const location = useLocation();
 
   const { isDarkMode, toggleTheme } = useTheme();
@@ -44,8 +44,9 @@ const HomePage = () => {
         navigate("/");
         return;
       }
-
-      const res = await axios.get("http://localhost:5000/api/v1/content", {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL;
+const res = await axios.get(`${backendUrl}/api/v1/content`
+      , {
         headers: token ? { token } : {},
         withCredentials: true,
       });
@@ -146,8 +147,8 @@ const HomePage = () => {
         navigate("/");
         return;
       }
-
-      const res = await axios.get("http://localhost:5000/api/v1/content", {
+      const backendUrl = import.meta.env.VITE_BACKEND_URL;
+      const res = await axios.get(`${backendUrl}/api/v1/content`, {
         headers: {
           "Content-Type": "application/json",
           token,
