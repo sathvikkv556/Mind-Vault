@@ -35,6 +35,7 @@ try{
   await newUser.save();
 
   res.status(201).json({
+    success:true,
     message: "User successfully created"
     })
   return;
@@ -93,6 +94,7 @@ export const login = async(req: Request,res: Response)=>{
     // }); 
 
     res.status(200).json({
+      success:true,
       message: "user logged in successfully",
       token,
       userID: User._id 
