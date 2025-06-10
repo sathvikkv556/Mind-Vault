@@ -161,7 +161,7 @@ const res = await axios.get(`${backendUrl}/api/v1/content`
         setShareData(jsonData.data);
 
         const encodedData = encodeURIComponent(JSON.stringify(jsonData.data));
-        const shareLink = `http://localhost:5173/share/${userId}?data=${encodedData}`;
+        const shareLink = `https://mind-vault-r5mk.vercel.app/share/${userId}?data=${encodedData}`;
 
         console.log("Generated share link:", shareLink);
 
